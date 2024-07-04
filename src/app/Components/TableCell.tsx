@@ -1,28 +1,45 @@
+"use client"
 import React, { useState } from "react";
 import ImageSelectionModal from "./ImageSelectionModal";
 
 interface TableCellProps {
   variant: {
     id: string;
-    url: string | null;
+    url?: string; // Make url optional since it may not always exist
     width: number | null;
     size: number | null;
   };
   stateIndex: number;
   variantIndex: number;
-  handleFileChange: (stateIndex: number, variantIndex: number, event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleFileChange: (
+    stateIndex: number,
+    variantIndex: number,
+    file: File
+  ) => void; // Adjusted to accept a File object directly
 }
 
-const TableCell: React.FC<TableCellProps> = ({ variant, stateIndex, variantIndex, handleFileChange }) => {
+const TableCell: React.FC<TableCellProps> = ({
+  variant,
+  stateIndex,
+  variantIndex,
+  handleFileChange,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const images = ["/images/photo1.png", "/images/photo2.jpeg", "/images/photo3.png", "/images/photo4.jpeg"];
+  const images = [
+    "/images/photo1.png",
+    "/images/photo2.jpeg",
+    "/images/photo3.png",
+    "/images/photo4.jpeg",
+  ];
 
-  //@ts-ignore
   const handleSelect = (url: string) => {
-    handleFileChange(stateIndex, variantIndex, { target: { files: [{ url }] } });
+    // Create a fake File object for demonstration
+    const file = new File([url], `design_${variantIndex + 1}.png`, {
+      type: "image/png",
+    });
+    handleFileChange(stateIndex, variantIndex, file);
     setIsModalOpen(false);
   };
-
 
   return (
     <td className="p-2 border text-center">
@@ -39,7 +56,13 @@ const TableCell: React.FC<TableCellProps> = ({ variant, stateIndex, variantIndex
             type="file"
             style={{ display: "none" }}
             accept="image/png, image/jpeg, image/jpg"
-            onChange={(event) => handleFileChange(stateIndex, variantIndex, event)}
+            onChange={(event) =>
+              handleFileChange(
+                stateIndex,
+                variantIndex,
+                event.target.files![0] // Access the selected File object directly
+              )
+            }
           />
         </>
       ) : (
