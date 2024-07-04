@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface Variant {
   id: string;
@@ -54,7 +54,11 @@ export const useTableContext = (): TableContextProps => {
   return context;
 };
 
-export const TableProvider: React.FC = ({ children }) => {
+interface TableProviderProps {
+  children: ReactNode; // Define children prop type
+}
+
+export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
   const [data, setData] = useState<State[]>(initialData);
   const [variantHeaders, setVariantHeaders] = useState<string[]>(["Primary Variant", "Variant 2"]);
   const [showFilterOptions, setShowFilterOptions] = useState<boolean[]>(Array(initialData.length).fill(false));

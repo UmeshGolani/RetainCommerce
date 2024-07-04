@@ -41,6 +41,9 @@ const TableRow: React.FC<TableRowProps> = ({ stateIndex }) => {
           onSelect={handleFilterSelect}
         />
       </td>
+      
+      //@ts-expect-error
+      //@ts-ignore
       {item.variants.map((variant, idx) => (
         <TableCell
           key={variant.id}
