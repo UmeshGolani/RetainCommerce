@@ -20,7 +20,7 @@ const TableCell: React.FC<TableCellProps> = ({ variant, stateIndex, variantIndex
   //@ts-ignore
   const handleSelect = (url: string) => {
     const file = new File([new Blob()], "filename", { type: "image/jpeg" });
-    handleFileChange(stateIndex, variantIndex, { target: { files: [file] } });
+    handleFileChange(stateIndex, variantIndex, { target: { files: file[] } });
     setIsModalOpen(false);
 };
 
