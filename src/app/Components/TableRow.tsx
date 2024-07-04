@@ -44,9 +44,9 @@ const TableRow: React.FC<TableRowProps> = ({ stateIndex }) => {
       
       
       {item.variants.map((variant, idx) => (
-        //@ts-ignore
         <TableCell
           key={variant.id}
+          //@ts-ignore
           variant={variant}
           stateIndex={stateIndex}
           variantIndex={idx}

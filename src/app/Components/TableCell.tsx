@@ -8,7 +8,7 @@ interface TableCellProps {
     url?: string; // Make url optional since it may not always exist
     width: number | null;
     size: number | null;
-  };
+  } ;
   stateIndex: number;
   variantIndex: number;
   handleFileChange: (
