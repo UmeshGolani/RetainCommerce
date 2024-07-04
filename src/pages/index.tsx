@@ -1,6 +1,6 @@
 import React from "react";
-import Table from "@/app/Components/Table";
-import useTheme from "@/app/hooks/useTheme";
+import useTheme from "../app/hooks/useTheme";
+import Table from "../app/Components/Table";
 
 const Home: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
