@@ -17,10 +17,13 @@ const TableCell: React.FC<TableCellProps> = ({ variant, stateIndex, variantIndex
   const [isModalOpen, setIsModalOpen] = useState(false);
   const images = ["/images/photo1.png", "/images/photo2.jpeg", "/images/photo3.png", "/images/photo4.jpeg"];
 
+  //@ts-ignore
   const handleSelect = (url: string) => {
-    handleFileChange(stateIndex, variantIndex, { target: { files: [{ url }] } });
+    const file = new File([new Blob()], "filename", { type: "image/jpeg" });
+    handleFileChange(stateIndex, variantIndex, { target: { files: [file] } });
     setIsModalOpen(false);
-  };
+};
+
 
   return (
     <td className="p-2 border text-center">
