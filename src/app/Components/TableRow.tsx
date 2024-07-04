@@ -42,9 +42,9 @@ const TableRow: React.FC<TableRowProps> = ({ stateIndex }) => {
         />
       </td>
       
-      //@ts-expect-error
-      //@ts-ignore
+      
       {item.variants.map((variant, idx) => (
+        //@ts-ignore
         <TableCell
           key={variant.id}
           variant={variant}
